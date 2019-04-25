@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CustomerService} from '../customer.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-customer-create',
@@ -8,7 +10,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class CustomerCreateComponent implements OnInit {
   addCustomerForm: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private customerService: CustomerService, private router: Router) { }
 
   ngOnInit() {
     this.addCustomerForm = this.fb.group({
@@ -23,7 +25,7 @@ export class CustomerCreateComponent implements OnInit {
 
   addCustomer() {
     if (this.addCustomerForm.valid) {
-      console.log('add Customer successful.');
+      this.customerService.addCustomer(this.addCustomerForm.value).subscribe(_ => this.router.navigate(['/list']));
     } else {
       console.log('Fail.');
     }
