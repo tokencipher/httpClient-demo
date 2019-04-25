@@ -1,5 +1,6 @@
-<ul *ngIf="customers else empty">
-  <li *ngFor="let customer of customers">
+<h2>Customers</h2>
+<ul *ngIf="customers else empty" class="list-group">
+  <li *ngFor="let customer of customers" class="list-group-item">
     <a routerLink="/details/{{customer.id}}">{{customer.name}}</a>
   </li>
 </ul>
