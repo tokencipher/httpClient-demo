@@ -1,0 +1,7 @@
+<ul *ngIf="customers else empty">
+  <li *ngFor="let customer of customers">
+    <a routerLink="/details/{{customer.id}}">{{customer.name}}</a>
+  </li>
+</ul>
+
+<ng-template #empty> No Customers Yet </ng-template>
