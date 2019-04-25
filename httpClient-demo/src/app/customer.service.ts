@@ -31,13 +31,28 @@ export class CustomerService {
   }
 
   addCustomer(customer: Customer): Observable<Customer> {
-    console.log(customer);
-
 
     return this.httpClient
       .post<Customer>('http://127.0.0.1:3000/customers', customer, {}).pipe(
         tap(_ => console.log('added customer')),
         catchError(this.handleError('add Customer', new Customer()))
+      );
+  }
+
+  updateCustomer(id, customer) {
+    const editedCustomer = {id, ...customer};
+    return this.httpClient
+      .put<Customer>(`http://127.0.0.1:3000/customers/${id}`, editedCustomer, {}).pipe(
+        tap(_ => console.log('updated customer')),
+        catchError(this.handleError('Update Customer', new Customer()))
+      );
+  }
+
+  deleteCustomer(id: number) {
+    return this.httpClient
+      .delete<Customer>(`http://127.0.0.1:3000/customers/${id}`, {}).pipe(
+        tap(_ => console.log(`deleted customer with id ${id}`)),
+        catchError(this.handleError('Delete Customer', new Customer()))
       );
   }
 

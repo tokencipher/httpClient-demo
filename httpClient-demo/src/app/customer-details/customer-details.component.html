@@ -1,5 +1,10 @@
-<div class="justify-content-center align-items-center py-5">
-  <h2 class="border-bottom">{{customer.name}}</h2>
+<div *ngIf="customer" class="justify-content-center align-items-center py-5 container">
+  <div class="row">
+    <h2 class="col-4 border-bottom">{{customer.name}}</h2>
+    <div class="col-2">
+    <button class="btn inline btn-danger" (click)="verifyDelete(modalContent)">Delete</button>
+    </div>
+  </div>
   <nav>
     <a routerLink="/update/{{id}}">Edit</a>
   </nav>
@@ -13,3 +18,16 @@
   <br />
   <label>Title: {{customer.title}}</label>
 </div>
+
+<ng-template #modalContent let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Delete Customer</h4>
+  </div>
+  <div class="modal-body">
+    Are you sure you want to delete this customer?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="d('Cancel')">Cancel</button>
+    <button type="button" class="btn btn-outline-danger" (click)="c('Yes')">Yes</button>
+  </div>
+</ng-template>
