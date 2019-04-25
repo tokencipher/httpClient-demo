@@ -20,7 +20,6 @@ export class CustomerDetailsComponent implements OnInit {
   getCustomer() {
     this.route.params.subscribe(data => this.id = +(data.id));
 
-    // FIXME - this needs to be invoked differently once the service returns an Observable as expected.
-    this.customer = this.customerService.getCustomer(this.id);
+    this.customerService.getCustomer(this.id).subscribe(c => this.customer = c);
   }
 }
