@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {CustomerService} from '../customer.service';
+import {Customer} from '../customer';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-customer-details',
@@ -6,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./customer-details.component.css']
 })
 export class CustomerDetailsComponent implements OnInit {
-
-  constructor() { }
+  id: number;
+  customer: Customer;
+  constructor(private route: ActivatedRoute, private customerService: CustomerService) { }
 
   ngOnInit() {
+    this.getCustomer();
   }
 
+  getCustomer() {
+    this.route.params.subscribe(data => this.id = +(data.id));
+
+    // FIXME - this needs to be invoked differently once the service returns an Observable as expected.
+    this.customer = this.customerService.getCustomer(this.id);
+  }
 }

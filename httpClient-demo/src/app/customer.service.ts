@@ -10,6 +10,11 @@ import {catchError, tap} from 'rxjs/operators';
 export class CustomerService {
   constructor(private httpClient: HttpClient) { }
 
+  getCustomer(id: number) {
+    // TODO - Send a request to the API to get the correct Customer data using the httpClient. This method should return an Observable!
+    return new Customer();
+  }
+
   getCustomers(): Observable<Customer[]> {
     return this.httpClient
       .get<Customer[]>('http://127.0.0.1:3000/customers').pipe(
@@ -39,4 +44,5 @@ export class CustomerService {
       return of(result as T);
     };
   }
+
 }
