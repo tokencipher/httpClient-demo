@@ -23,3 +23,5 @@ For example:
 
 #### Front end
 Navigate to the httpClient-demo directory and run `npm install`. Once dependencies have been installed, run `ng serve -o` and the web app should automatically open up for you at localhost:4200
+
+This demo is intended to focus on demonstrating making rest API calls using Angular's built in `HttpClientModule`.
