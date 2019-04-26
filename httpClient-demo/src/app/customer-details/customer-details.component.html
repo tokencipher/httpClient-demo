@@ -1,15 +1,15 @@
 <div class="justify-content-center align-items-center py-5">
-  <h2 class="border-bottom">{{customer.name}}</h2>
+  <h2 class="border-bottom">{{customer?.name}}</h2>
   <nav>
     <a routerLink="/update/{{id}}">Edit</a>
   </nav>
-  <label>Email: {{customer.email}}</label>
+  <label>Email: {{customer?.email}}</label>
   <br />
-  <label>Phone number: {{customer.phone}}</label>
+  <label>Phone number: {{customer?.phone}}</label>
   <br />
-  <label>City: {{customer.city}}</label>
+  <label>City: {{customer?.city}}</label>
   <br />
-  <label>Country: {{customer.country}}</label>
+  <label>Country: {{customer?.country}}</label>
   <br />
-  <label>Title: {{customer.title}}</label>
+  <label>Title: {{customer?.title}}</label>
 </div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Customer} from './customer';
-import {Observable, of} from 'rxjs';
+import {Observable, of, isObservable} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 
 @Injectable({
@@ -10,9 +10,18 @@ import {catchError, tap} from 'rxjs/operators';
 export class CustomerService {
   constructor(private httpClient: HttpClient) { }
 
-  getCustomer(id: number) {
+  getCustomer(id: number): Observable<Customer> {
     // TODO - Send a request to the API to get the correct Customer data using the httpClient. This method should return an Observable!
-    return new Customer();
+    let retrieved: Observable<Customer> = this.httpClient
+      .get<Customer>('http://127.0.0.1:3000/customers/' + id).pipe(
+        tap( data => {
+          console.log('what the heck does this do???');
+        }),
+        catchError(this.handleError('get Customer', new Customer()))
+      );
+    return retrieved;
+    //return isObservable<Customer>(retrieved) ? <Observable<Customer>>retrieved : of(new Customer());
+    //return new Customer();
   }
 
   getCustomers(): Observable<Customer[]> {
