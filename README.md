@@ -34,5 +34,3 @@ Once familiarized with Angular's httpClient, you have 3 primary goals to complet
 2. Implement a method in your customerService that will UPDATE an existing customer in your database. The method should accept two parameters as input: an id of an existing customer in your database, and a customer object with updated values, and should make an http request to update the db. You should also modify the `CustomerUpdateComponent` with a form that will utilize this service.
 
 3. Implement a method in your customerService that will DELETE an existing customer from your database. The method should accept one parameter as input: an id of an existing customer in your database and should make an http request to delete that customer from the db. You should also modify the `CustomerDetailComponent` to include a button to delete the customer, and redirect back to the customer list when complete.
-
-3. 
